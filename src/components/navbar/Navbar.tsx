@@ -19,7 +19,7 @@ export default function Navbar() {
 
   const {
     access_token,
-    user: { id, username },
+    user: { username },
   } = useSelector((state: any) => state.auth);
 
   const handleSignout = async () => {
@@ -47,7 +47,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 flex items-center justify-between py-4 px-4">
+    <div className="fixed z-50 top-0 left-0 right-0 flex items-center justify-between py-4 px-4">
       <Logo />
 
       <div className="flex items-center gap-4">
@@ -58,9 +58,6 @@ export default function Navbar() {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-              <Link to={`/timestamp/${id}`}>
-                <DropdownMenuItem>Timestamp</DropdownMenuItem>
-              </Link>
               <DropdownMenuItem onClick={handleSignout}>
                 Sign out
               </DropdownMenuItem>

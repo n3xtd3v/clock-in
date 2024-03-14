@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import SignIn from "./routes/signin";
-import Timestamp from "./routes/timestamp";
 import ErrorPage from "./error-page";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./index.css";
@@ -19,10 +18,6 @@ const router = createBrowserRouter([
       {
         path: "signin",
         element: <SignIn />,
-      },
-      {
-        path: "timestamp/:timestampId",
-        element: <Timestamp />,
       },
     ],
   },

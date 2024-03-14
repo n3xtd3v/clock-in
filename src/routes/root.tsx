@@ -50,9 +50,7 @@ export default function Root(): JSX.Element {
     <>
       <Navbar />
 
-      <main className="flex justify-center items-center h-screen p-4">
-        {pathname === "/" ? <Camera /> : <Outlet />}
-      </main>
+      <main>{pathname === "/" ? <Camera /> : <Outlet />}</main>
 
       <Toaster />
     </>
