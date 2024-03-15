@@ -20,7 +20,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import { postDataAPI } from "@/lib/fetchData";
 import { updateTimestamp } from "../../redux/timestamp/timestamp";
 
@@ -33,7 +32,7 @@ const videoConstraints = {
 export default function webcam() {
   const {
     access_token,
-    user: { username, id, displayName },
+    user: { id, displayName },
   } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
   const { timestamps } = useSelector((state: any) => state.timestamp);
@@ -62,45 +61,11 @@ export default function webcam() {
       const imageSrc = webcamRef?.current?.getScreenshot();
       let imgBase64: any = imageSrc;
 
-      function DataURIToBlob(dataURI: string) {
-        const splitDataURI = dataURI.split(",");
-        const byteString =
-          splitDataURI[0].indexOf("base64") >= 0
-            ? atob(splitDataURI[1])
-            : decodeURI(splitDataURI[1]);
-        const mimeString = splitDataURI[0].split(":")[1].split(";")[0];
-
-        const ia = new Uint8Array(byteString.length);
-
-        for (let i = 0; i < byteString.length; i++)
-          ia[i] = byteString.charCodeAt(i);
-
-        return new Blob([ia], { type: mimeString });
-      }
-
-      const file = DataURIToBlob(imgBase64);
-
-      const formData = new FormData();
-      formData.append("photo", file, `${username}-image.jpg`);
-
       try {
-        const res = await axios.post(
-          "http://localhost:6061/api/upload",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization: access_token,
-            },
-          }
-        );
-
-        const { pathname } = res.data;
-
         const data = {
           displayName,
           timestampType,
-          imageURL: pathname,
+          imageURL: imgBase64,
           id,
         };
 
