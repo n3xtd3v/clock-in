@@ -32,8 +32,9 @@ const videoConstraints = {
 export default function webcam() {
   const {
     access_token,
-    user: { id, displayName },
+    user: { id, no, displayName },
   } = useSelector((state: any) => state.auth);
+
   const dispatch = useDispatch();
   const { timestamps } = useSelector((state: any) => state.timestamp);
   const [isCaptureEnable, setCaptureEnable] = useState<boolean>(true);
@@ -67,7 +68,14 @@ export default function webcam() {
           timestampType,
           imageURL: imgBase64,
           id,
+          no,
         };
+
+        if (data.no === undefined) {
+          return toast("Warning", {
+            description: `User number does not exist!`,
+          });
+        }
 
         const resTimestamp = await postDataAPI(
           "clock-in/timestamp",
@@ -95,7 +103,14 @@ export default function webcam() {
           displayName,
           timestampType,
           id,
+          no,
         };
+
+        if (data.no === undefined) {
+          return toast("Warning", {
+            description: `User number does not exist!`,
+          });
+        }
 
         const resTimestamp = await postDataAPI(
           "clock-in/timestamp",

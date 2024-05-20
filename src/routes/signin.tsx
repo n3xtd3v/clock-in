@@ -65,11 +65,11 @@ export default function SignIn(): JSX.Element {
         status,
         message,
         access_token,
-        user: { id, username, ...rest },
+        user: { id, no, username, ...rest },
       } = res.data;
 
       if (status === "ok") {
-        dispatch(signIn({ user: { id, username, ...rest }, access_token }));
+        dispatch(signIn({ user: { id, no, username, ...rest }, access_token }));
 
         localStorage.setItem("firstLogin", "true");
 

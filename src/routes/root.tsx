@@ -26,10 +26,12 @@ export default function Root(): JSX.Element {
 
         const {
           access_token,
-          user: { username, ...rest },
+          user: { username, no, ...rest },
         } = res.data;
 
-        dispatch(refreshToken({ user: { username, ...rest }, access_token }));
+        dispatch(
+          refreshToken({ user: { username, no, ...rest }, access_token })
+        );
       }
     })();
   }, []);
