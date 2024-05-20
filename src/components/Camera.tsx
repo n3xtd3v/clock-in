@@ -80,7 +80,7 @@ export default function webcam() {
         if (status === "ok") {
           dispatch(updateTimestamp(timestamps));
 
-          toast("Success.", {
+          toast("Success", {
             description: `${message}`,
           });
         }
@@ -108,7 +108,7 @@ export default function webcam() {
         if (status === "ok") {
           dispatch(updateTimestamp(timestamps));
 
-          toast("Success.", {
+          toast("Success", {
             description: `${message}`,
           });
         }
@@ -122,23 +122,21 @@ export default function webcam() {
 
   return (
     <div className="flex justify-center p-20">
-      <div className="relative w-[426px] h-[240px] sm:w-[854px] sm:h-[480px] bg-inherit px-4 space-y-5">
+      <div className="relative w-[426px] h-[240px] sm:w-[854px] sm:h-[480px] bg-inherit space-y-5">
         {isCaptureEnable ? (
-          <div className="relative w-[426px] h-[240px] sm:w-[854px] sm:h-[480px] bg-inherit px-4 space-y-5">
-            <Webcam
-              audio={false}
-              ref={webcamRef}
-              screenshotFormat="image/jpeg"
-              videoConstraints={videoConstraints}
-              mirrored={true}
-            />
-          </div>
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+            videoConstraints={videoConstraints}
+            mirrored={true}
+          />
         ) : (
-          <div className="relative w-[426px] h-[240px] sm:w-[854px] sm:h-[480px] bg-inherit px-4 space-y-5"></div>
+          <div className="relative w-[426px] h-[240px] sm:w-[854px] sm:h-[480px] bg-inherit space-y-5"></div>
         )}
 
         <div
-          className="absolute z-40 top-10 right-10 cursor-pointer text-5xl"
+          className="absolute z-40 top-1 right-10 cursor-pointer text-5xl sm:text-8xl"
           onClick={() => setCaptureEnable(!isCaptureEnable)}
         >
           <TooltipProvider>
@@ -154,7 +152,7 @@ export default function webcam() {
         </div>
 
         <div
-          className="absolute z-50 bottom-10 left-10 cursor-pointer text-3xl sm:text-9xl bg-green-500 rounded-full p-2 sm:p-5 text-white"
+          className="absolute z-50 bottom-10 left-10 cursor-pointer text-3xl rounded-lg sm:text-9xl bg-green-500 p-2 sm:p-5 text-white"
           onClick={() => capture("in")}
         >
           <TooltipProvider>
@@ -168,7 +166,7 @@ export default function webcam() {
         </div>
 
         <div
-          className="absolute z-50 bottom-10 right-10 cursor-pointer text-3xl sm:text-9xl bg-red-500 rounded-full p-2 sm:p-5 text-white"
+          className="absolute z-50 bottom-10 right-10 cursor-pointer text-3xl rounded-lg sm:text-9xl bg-red-500 p-2 sm:p-5 text-white"
           onClick={() => capture("out")}
         >
           <TooltipProvider>
