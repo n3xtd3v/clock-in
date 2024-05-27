@@ -138,7 +138,7 @@ export default function webcam() {
   return (
     <div className="flex justify-center p-20">
       <div className="relative w-[426px] h-[240px] sm:w-[854px] sm:h-[480px] bg-inherit space-y-5">
-        {isCaptureEnable ? (
+        {isCaptureEnable && devices.length > 0 ? (
           <Webcam
             audio={false}
             ref={webcamRef}
